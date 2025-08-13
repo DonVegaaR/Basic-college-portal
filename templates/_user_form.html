@@ -1,0 +1,21 @@
+<form method="POST" class="form">
+  <label>
+    <span>Username</span>
+    <input type="text" name="username" value="{{ user.username if user else '' }}" {% if action == 'Add' %}required{% endif %}>
+  </label>
+
+  <label>
+    <span>Password {% if action == 'Edit' %}(leave blank to keep current password){% endif %}</span>
+    <input type="password" name="password" {% if action == 'Add' %}required{% endif %}>
+  </label>
+
+  <label>
+    <span>Role</span>
+    <select name="role" required>
+      <option value="student" {% if user and user.role == 'student' %}selected{% endif %}>Student</option>
+      <option value="professor" {% if user and user.role == 'professor' %}selected{% endif %}>Professor</option>
+    </select>
+  </label>
+
+  <button class="btn" type="submit">{{ action }} User</button>
+</form>

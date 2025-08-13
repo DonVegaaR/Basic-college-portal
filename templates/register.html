@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Register · College Portal{% endblock %}
+{% block content %}
+<section class="card">
+  <h2>Create an account</h2>
+
+  {% include '_auth_form.html' with context %}
+  
+  <p class="muted mt">
+    Already have an account?
+    <a href="{{ url_for('login') }}">Login</a>
+  </p>
+</section>
+{% endblock %}

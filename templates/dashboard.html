@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · College Portal{% endblock %}
+
+{% block content %}
+<section class="card">
+  <h2>Welcome, {{ username }}!</h2>
+  <div class="pill">Role: {{ role|title }}</div>
+
+  <div class="grid mt">
+    {% for tile in tiles %}
+      {% include '_tile.html' %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

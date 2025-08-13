@@ -1,0 +1,39 @@
+<form method="POST" class="form">
+  {% if title != 'Login' %}
+    <label>
+      <span>Username</span>
+      <input type="text" name="username" required value="{{ request.form.username }}">
+    </label>
+
+    <label>
+      <span>Password</span>
+      <input type="password" name="password" required>
+    </label>
+
+    {% if title == 'Register' %}
+        <label>
+            <span>Confirm Password</span>
+            <input type="password" name="confirm_password" required>
+        </label>
+        <label>
+        <span>Role</span>
+        <select name="role" required>
+          <option value="student" {% if request.form.role == 'student' %}selected{% endif %}>Student</option>
+          <option value="professor" {% if request.form.role == 'professor' %}selected{% endif %}>Professor</option>
+        </select>
+      </label>
+    {% endif %}
+  {% else %}
+    <label>
+      <span>Username</span>
+      <input type="text" name="username" required value="{{ request.form.username }}">
+    </label>
+
+    <label>
+      <span>Password</span>
+      <input type="password" name="password" required>
+    </label>
+  {% endif %}
+
+  <button type="submit" class="btn">Submit</button>
+</form>

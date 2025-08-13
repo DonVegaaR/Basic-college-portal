@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ action }} User · College Portal{% endblock %}
+
+{% block content %}
+<section class="card">
+  <h2>{{ action }} User</h2>
+  <a href="{{ url_for('admin') }}">Back to User Management</a>
+
+  <div class="flash-wrap">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="flash {{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  {% include "_user_form.html" %}
+</section>
+{% endblock %}

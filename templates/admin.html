@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}User Management · College Portal{% endblock %}
+{% block content %}
+<section class="card">
+  <p>
+    <a class="btn btn-outline" href="{{ url_for('add_user') }}">Add New User</a>
+  </p>
+  <h2>User Management</h2>
+  <p>Logged in as {{ session.username }} ({{ session.role|title }})</p>
+  <a href="{{ url_for('dashboard') }}">Back to Dashboard</a> | <a href="{{ url_for('logout') }}">Logout</a>
+
+  <div class="flash-wrap">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="flash {{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        {% include '_user_table_row.html' with context %}
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
